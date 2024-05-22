@@ -5,6 +5,8 @@
 package ui;
 
 import dao.UserDAO;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
 import ui.LoginFrame;
 /**
@@ -20,6 +22,8 @@ public class HomeFrame extends javax.swing.JFrame {
      */
     public HomeFrame() {
         initComponents();
+        lblUserName.setText("Welcome "+LoginFrame.loggedUserRole);
+        printDate();
     }
 
     /**
@@ -37,6 +41,7 @@ public class HomeFrame extends javax.swing.JFrame {
         lblManageJobs = new javax.swing.JLabel();
         lblManageUser = new javax.swing.JLabel();
         lblLogout = new javax.swing.JLabel();
+        lblUserName = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -46,6 +51,8 @@ public class HomeFrame extends javax.swing.JFrame {
         kGradientPanel1.setkEndColor(new java.awt.Color(204, 204, 255));
         kGradientPanel1.setkStartColor(new java.awt.Color(204, 255, 255));
 
+        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 102, 153));
         jLabel1.setText("jLabel1");
 
         lblManageCustomer.setFont(new java.awt.Font("Helvetica Neue", 1, 28)); // NOI18N
@@ -83,35 +90,43 @@ public class HomeFrame extends javax.swing.JFrame {
             }
         });
 
+        lblUserName.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
+        lblUserName.setForeground(new java.awt.Color(0, 102, 153));
+        lblUserName.setText("jLabel2");
+
         javax.swing.GroupLayout kGradientPanel1Layout = new javax.swing.GroupLayout(kGradientPanel1);
         kGradientPanel1.setLayout(kGradientPanel1Layout);
         kGradientPanel1Layout.setHorizontalGroup(
             kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addContainerGap())
             .addGroup(kGradientPanel1Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblManageCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblManageUser, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
-                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblManageJobs, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                        .addComponent(lblUserName)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1))
+                    .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                        .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblManageCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblManageUser, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                        .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblManageJobs, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(26, 26, 26))
         );
         kGradientPanel1Layout.setVerticalGroup(
             kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(kGradientPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblUserName)
+                    .addComponent(jLabel1))
                 .addGap(38, 38, 38)
                 .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblManageJobs, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblManageCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblManageUser, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -142,6 +157,16 @@ public class HomeFrame extends javax.swing.JFrame {
         loginFrame.setVisible(true);
     }//GEN-LAST:event_lblLogoutMouseClicked
 
+    
+    private void printDate(){
+        LocalDate currDate = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String formattedDate = currDate.format(formatter);
+        jLabel1.setText(formattedDate);
+    }
+    
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -184,5 +209,6 @@ public class HomeFrame extends javax.swing.JFrame {
     private javax.swing.JLabel lblManageCustomer;
     private javax.swing.JLabel lblManageJobs;
     private javax.swing.JLabel lblManageUser;
+    private javax.swing.JLabel lblUserName;
     // End of variables declaration//GEN-END:variables
 }
