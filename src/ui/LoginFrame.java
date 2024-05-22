@@ -45,6 +45,7 @@ public class LoginFrame extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         kGradientPanel1.setkEndColor(new java.awt.Color(204, 204, 255));
@@ -168,8 +169,7 @@ public class LoginFrame extends javax.swing.JFrame {
                 loggedUserRole = userName;
                 HomeFrame homeFrame = new HomeFrame();
                 homeFrame.setVisible(true);
-                LoginFrame loginFrame = new LoginFrame();
-                loginFrame.dispose();
+                this.setVisible(false);
 
             } else {
                 JOptionPane.showMessageDialog(null, "Username or password incorrect!!", "warning", JOptionPane.WARNING_MESSAGE);

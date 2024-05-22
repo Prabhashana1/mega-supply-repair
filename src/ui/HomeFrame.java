@@ -4,11 +4,16 @@
  */
 package ui;
 
+import dao.UserDAO;
+import javax.swing.JOptionPane;
+import ui.LoginFrame;
 /**
  *
  * @author prabhashana
  */
 public class HomeFrame extends javax.swing.JFrame {
+    
+    private UserDAO userDAO;
 
     /**
      * Creates new form HomeFrame
@@ -26,21 +31,116 @@ public class HomeFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        kGradientPanel1 = new keeptoo.KGradientPanel();
+        jLabel1 = new javax.swing.JLabel();
+        lblManageCustomer = new javax.swing.JLabel();
+        lblManageJobs = new javax.swing.JLabel();
+        lblManageUser = new javax.swing.JLabel();
+        lblLogout = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 669, Short.MAX_VALUE)
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
+        setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        kGradientPanel1.setkEndColor(new java.awt.Color(204, 204, 255));
+        kGradientPanel1.setkStartColor(new java.awt.Color(204, 255, 255));
+
+        jLabel1.setText("jLabel1");
+
+        lblManageCustomer.setFont(new java.awt.Font("Helvetica Neue", 1, 28)); // NOI18N
+        lblManageCustomer.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblManageCustomer.setText("Manage Customer");
+        lblManageCustomer.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        lblManageCustomer.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+
+        lblManageJobs.setFont(new java.awt.Font("Helvetica Neue", 1, 28)); // NOI18N
+        lblManageJobs.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblManageJobs.setText("Manage Jobs");
+        lblManageJobs.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        lblManageJobs.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+
+        lblManageUser.setFont(new java.awt.Font("Helvetica Neue", 1, 28)); // NOI18N
+        lblManageUser.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblManageUser.setText("Manage User");
+        lblManageUser.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        lblManageUser.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        lblManageUser.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblManageUserMouseClicked(evt);
+            }
+        });
+
+        lblLogout.setFont(new java.awt.Font("Helvetica Neue", 1, 28)); // NOI18N
+        lblLogout.setForeground(new java.awt.Color(204, 0, 51));
+        lblLogout.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblLogout.setText("Log Out");
+        lblLogout.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        lblLogout.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        lblLogout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblLogoutMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout kGradientPanel1Layout = new javax.swing.GroupLayout(kGradientPanel1);
+        kGradientPanel1.setLayout(kGradientPanel1Layout);
+        kGradientPanel1Layout.setHorizontalGroup(
+            kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addContainerGap())
+            .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblManageCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblManageUser, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblManageJobs, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 401, Short.MAX_VALUE)
+        kGradientPanel1Layout.setVerticalGroup(
+            kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(38, 38, 38)
+                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblManageJobs, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblManageCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblManageUser, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29))
         );
+
+        getContentPane().add(kGradientPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 670, 390));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void lblManageUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblManageUserMouseClicked
+       userDAO = new UserDAO();
+       String userName = LoginFrame.loggedUserRole;
+       if(userDAO.veryfiUserRole(userName)){
+           UserFrame userFrame = new UserFrame();
+           userFrame.setVisible(true);
+       }else{
+           JOptionPane.showMessageDialog(null, "Access denied!!", "warning", JOptionPane.WARNING_MESSAGE);
+       }
+        
+    }//GEN-LAST:event_lblManageUserMouseClicked
+
+    private void lblLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLogoutMouseClicked
+        this.dispose();
+        LoginFrame loginFrame = new LoginFrame();
+        loginFrame.setVisible(true);
+    }//GEN-LAST:event_lblLogoutMouseClicked
 
     /**
      * @param args the command line arguments
@@ -78,5 +178,11 @@ public class HomeFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private keeptoo.KGradientPanel kGradientPanel1;
+    private javax.swing.JLabel lblLogout;
+    private javax.swing.JLabel lblManageCustomer;
+    private javax.swing.JLabel lblManageJobs;
+    private javax.swing.JLabel lblManageUser;
     // End of variables declaration//GEN-END:variables
 }
