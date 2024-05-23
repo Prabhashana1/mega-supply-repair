@@ -9,12 +9,13 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
 import ui.LoginFrame;
+
 /**
  *
  * @author prabhashana
  */
 public class HomeFrame extends javax.swing.JFrame {
-    
+
     private UserDAO userDAO;
 
     /**
@@ -22,7 +23,7 @@ public class HomeFrame extends javax.swing.JFrame {
      */
     public HomeFrame() {
         initComponents();
-        lblUserName.setText("Welcome "+LoginFrame.loggedUserRole);
+        lblUserName.setText("Welcome " + LoginFrame.loggedUserRole);
         printDate();
     }
 
@@ -140,33 +141,35 @@ public class HomeFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void lblManageUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblManageUserMouseClicked
-       userDAO = new UserDAO();
-       String userName = LoginFrame.loggedUserRole;
-       if(userDAO.veryfiUserRole(userName)){
-           UserFrame userFrame = new UserFrame();
-           userFrame.setVisible(true);
-       }else{
-           JOptionPane.showMessageDialog(null, "Access denied!!", "warning", JOptionPane.WARNING_MESSAGE);
-       }
-        
+        userDAO = new UserDAO();
+        String userName = LoginFrame.loggedUserRole;
+        if (userDAO.veryfiUserRole(userName)) {
+            UserFrame userFrame = new UserFrame();
+            userFrame.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "Access denied!!", "warning", JOptionPane.WARNING_MESSAGE);
+        }
+
     }//GEN-LAST:event_lblManageUserMouseClicked
 
     private void lblLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLogoutMouseClicked
-        this.dispose();
-        LoginFrame loginFrame = new LoginFrame();
-        loginFrame.setVisible(true);
+        int result = JOptionPane.showConfirmDialog(rootPane, "Are you want logout?", "Confirmation", JOptionPane.YES_NO_OPTION);
+
+        if (result == JOptionPane.YES_OPTION) {
+            this.dispose();
+            LoginFrame loginFrame = new LoginFrame();
+            loginFrame.setVisible(true);
+        }
+
     }//GEN-LAST:event_lblLogoutMouseClicked
 
-    
-    private void printDate(){
+    private void printDate() {
         LocalDate currDate = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String formattedDate = currDate.format(formatter);
         jLabel1.setText(formattedDate);
     }
-    
-    
-    
+
     /**
      * @param args the command line arguments
      */
