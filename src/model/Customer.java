@@ -1,4 +1,7 @@
 package model;
+
+import java.util.Date;
+
 /**
  *
  * @author prabhashana
@@ -9,18 +12,21 @@ public class Customer {
     private String name;
     private String phoneModel;
     private String issueDescription;
+    private Date acceptedDate;
 
-    public Customer(String name, String phoneModel, String issueDescription) {
+    public Customer(String name, String phoneModel, String issueDescription, Date acceptedDate) {
         this.name = name;
         this.phoneModel = phoneModel;
         this.issueDescription = issueDescription;
+        this.acceptedDate = acceptedDate;
     }
 
-    public Customer(int customerId, String name, String phoneModel, String issueDescription) {
+    public Customer(int customerId, String name, String phoneModel, String issueDescription, Date acceptedDate) {
         this.customerId = customerId;
         this.name = name;
         this.phoneModel = phoneModel;
         this.issueDescription = issueDescription;
+        this.acceptedDate = acceptedDate;
     }
 
     public int getCustomerId() {
@@ -29,6 +35,14 @@ public class Customer {
 
     public void setCustomerId(int customerId) {
         this.customerId = customerId;
+    }
+
+    public Date getAcceptedDate() {
+        return acceptedDate;
+    }
+
+    public void setAcceptedDate(Date acceptedDate) {
+        this.acceptedDate = acceptedDate;
     }
     
     

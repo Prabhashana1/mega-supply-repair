@@ -1,6 +1,7 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,12 +17,13 @@ import util.DatabaseUtill;
 public class CustomerDAO {
     
     public boolean saveCustomer(Customer customer){
-        String query = "INSERT INTO customers (name, phone_model, issue_description) VALUES (?, ?, ?)";
+        String query = "INSERT INTO customers (name, phone_model, issue_description) VALUES (?, ?, ?, ?)";
         try (Connection con = DatabaseUtill.getConnection();
                 PreparedStatement stmt = con.prepareStatement(query)){
             stmt.setString(1, customer.getName());
             stmt.setString(2, customer.getPhoneModel());
             stmt.setString(3, customer.getIssueDescription());
+            stmt.setDate(4, (Date) customer.getAcceptedDate());
             int rowAffected = stmt.executeUpdate();
             return rowAffected > 0;
             
@@ -47,13 +49,14 @@ public class CustomerDAO {
     
     
     public boolean updateCustomer(Customer customer) {
-        String query = "UPDATE customers SET name = ?, phone_model = ?, issue_description = ? WHERE id = ?";
+        String query = "UPDATE customers SET name = ?, phone_model = ?, issue_description = ?, accepted_date = ? WHERE id = ?";
         try (Connection conn = DatabaseUtill.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setString(1, customer.getName());
             stmt.setString(2, customer.getPhoneModel());
             stmt.setString(3, customer.getIssueDescription());
-            stmt.setInt(4, customer.getCustomerId());
+            stmt.setDate(4, (Date) customer.getAcceptedDate());
+            stmt.setInt(5, customer.getCustomerId());
             int rowsAffected = stmt.executeUpdate();
             return rowsAffected > 0;
         } catch (SQLException e) {
@@ -70,7 +73,7 @@ public class CustomerDAO {
              PreparedStatement stmt = conn.prepareStatement(query);
              ResultSet rs = stmt.executeQuery()) {
             while (rs.next()) {
-                Customer customer = new Customer(Integer.parseInt(rs.getString("id")), rs.getString("name"), rs.getString("phone_model"), rs.getString("issue_description"));
+                Customer customer = new Customer(Integer.parseInt(rs.getString("id")), rs.getString("name"), rs.getString("phone_model"), rs.getString("issue_description"), rs.getDate("accepted_date"));
                 customers.add(customer);
             }
         } catch (SQLException e) {
